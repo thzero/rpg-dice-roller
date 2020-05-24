@@ -3,7 +3,6 @@ import { diceUtils } from './utilities/utils';
 import RequiredArgumentError from './exceptions/RequiredArgumentErrorError';
 import RollResults from './results/RollResults';
 
-
 /**
  * @type {symbol}
  *
@@ -83,7 +82,6 @@ class HasExpressionsTrait {
     }
   }
 
-
   /** ***********************
    * Public Properties
    ************************ */
@@ -153,7 +151,6 @@ class HasExpressionsTrait {
     return this[totalSymbol] || 0;
   }
 
-
   /** ***********************
    * Public methods
    ************************ */
@@ -186,12 +183,11 @@ class HasExpressionsTrait {
       return null;
     }).filter(Boolean);
 
-    if (Array.isArray(this.modifiers) && (this.modifiers.length > 0)) {
-      // loop through each modifier and carry out its actions
-      (this.modifiers || []).forEach((modifier) => {
-        modifier.run(rolls, this);
-      });
-    }
+    // loop through each modifier and carry out its actions
+    console.log(this.modifiers);
+    (this.modifiers || []).forEach((modifier) => {
+      modifier.run(rolls, this);
+    });
 
     // create a new result object to hold the rolls
     this[rollsSymbol] = new RollResults(rolls);
@@ -223,7 +219,6 @@ class HasExpressionsTrait {
     return this.output;
   }
 
-
   /** ***********************
    * Private Methods
    ************************ */
@@ -246,7 +241,6 @@ class HasExpressionsTrait {
     const formula = expressions.reduce((accumulator, expression, i) => {
       const isObject = typeof expression === 'object';
       let output = expression;
-
 
       if (Array.isArray(expression)) {
         // expression is an array - must be roll group with sub-rolls
